@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+    Simple Click to call widget 
+-->
+<html>
+
+<head>
+    <title>simple click-to-call phone</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/c2c.css">
+    <link rel="icon" href="favicon.png">
+
+    <!-- Phone configuration -->
+    <script defer src="../conf/config.js"></script>
+    
+    <!-- Concatenated minimized JsSIP SIP stack (with AudioCodes modifications) and ACAPI AudioCodes wrapper  -->
+    <script defer src="../js/ac_webrtc.min.js"></script>   
+
+    <!-- Audio player to play ring tones  -->
+    <script defer src="../js/c2c_audioplayer2.js"></script>
+    
+    <!-- Phone code. It is small, only 700 lines -->
+    <script defer src="../js/c2c.js"></script>
+</head>
+
+<body>
+    <img src="logo-audio-codes.svg" alt="AudioCodes" width="450" height="70">
+    <div id="main_div">
+        <h2>Simple Click To Call</h2>
+        <p>This page shows the AudioCodes simple click To call phone.</p>
+        <p>This site is for Demo purpose only.</p>
+
+        <!-- click to call widget (call buttons and audio/video selection) -->
+        <div id="c2c_widget_div">
+
+            <!-- Call/Hangup button -->
+            <button id="c2c_call_btn" title="Click to call us on the phone">
+
+                <!-- Used free SVG phone icon. Thanks to fontawesome.com -->
+                <svg id="c2c_call_svg" fill="#006DF0" viewBox="0 0 512 512">
+                    <path
+                        d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z" />
+                </svg>
+
+                <span>Call</span>
+            </button>
+
+            <!-- If configured 'user_control' before call show video checkbox -->
+            <span id="c2c_video_chk_span">
+                <input id="c2c_video_chk" type="checkbox" title="video call">
+                video
+            </span>
+
+            <!-- If configured 'user_control' - during call show camera button  -->
+            <button id="c2c_camera_btn">
+                <svg id="c2c_camera_svg" viewBox="0 0 30 30">
+                    <g stroke-width="2" stroke-linejoin="round"">
+                        <rect x="4" y="12" width="15" height="14" />
+                    <polyline points="20,15 26,12 26,26 20,23" />
+                    <line id="c2c_camera_line_svg" class="c2c_camera_on c2c_camera_off" stroke-width="3" x1="23.823129"
+                        y1="6.0983146" x2="0.69568307" y2="29.082097" stroke="none" />
+                    </g>
+                </svg>
+            </button>
+
+            <!-- phone status line -->
+            <div id="c2c_status_line"></div>
+
+        </div>
+		<!-- end of click to call widget -->
+
+        <!-- Video controls for WebRTC. Can be before or after widget buttons. Invisible for audio call -->
+        <div id="c2c_video_div">
+            <video id="c2c_local_video" style="display: none;" playsinline></video>
+            <video id="c2c_remote_video" style="display: none;" autoplay playsinline></video>
+        </div>
+    </div>
+</body>
+
+</html>
